@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.2 on win32)" generated="20230211 17:15:52.443" rpa="false" schemaversion="3">
+<suite id="s1" name="CreateCharacters" source="G:\marvel-api\CreateCharacters.robot">
+<test id="s1-t1" name="Deve cadastrar um personagem" line="8">
+<kw name="Set Client Key">
+<arg>jonathanT@yahoo.com</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{usuario}</var>
+<arg>email=${email}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230211 17:15:52.566" level="INFO">&amp;{usuario} = { email=jonathanT@yahoo.com }</msg>
+<status status="PASS" starttime="20230211 17:15:52.564" endtime="20230211 17:15:52.566"/>
+</kw>
+<kw name="POST">
+<var>${response}</var>
+<arg>http://marvel.qaninja.academy/accounts</arg>
+<arg>json=${usuario}</arg>
+<msg timestamp="20230211 17:15:52.570" level="FAIL">No keyword with name 'POST' found.</msg>
+<status status="FAIL" starttime="20230211 17:15:52.570" endtime="20230211 17:15:52.570"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${client_key}</var>
+<arg>${response.json()}[client_key]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20230211 17:15:52.570" endtime="20230211 17:15:52.571"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{HEADERS}</var>
+<arg>client_key=${client_key}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20230211 17:15:52.571" endtime="20230211 17:15:52.571"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${HEADERS}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="NOT RUN" starttime="20230211 17:15:52.571" endtime="20230211 17:15:52.572"/>
+</kw>
+<status status="FAIL" starttime="20230211 17:15:52.563" endtime="20230211 17:15:52.572"/>
+</kw>
+<kw name="Factory Thanos">
+<var>&amp;{personagem}</var>
+<status status="NOT RUN" starttime="20230211 17:15:52.578" endtime="20230211 17:15:52.578"/>
+</kw>
+<kw name="POST">
+<var>${response}</var>
+<arg>http://marvel.qaninja.academy/characters</arg>
+<arg>json=${personagem}</arg>
+<arg>headers=${headers}</arg>
+<status status="NOT RUN" starttime="20230211 17:15:52.582" endtime="20230211 17:15:52.582"/>
+</kw>
+<kw name="Status Should Be">
+<arg>200</arg>
+<arg>${response}</arg>
+<status status="NOT RUN" starttime="20230211 17:15:52.587" endtime="20230211 17:15:52.587"/>
+</kw>
+<status status="FAIL" starttime="20230211 17:15:52.547" endtime="20230211 17:15:52.588">No keyword with name 'POST' found.</status>
+</test>
+<doc>Suite de Teste do cadastro de personagens na API da Marvel</doc>
+<status status="FAIL" starttime="20230211 17:15:52.452" endtime="20230211 17:15:52.592"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="CreateCharacters">CreateCharacters</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230211 17:15:52.518" level="ERROR">Error in file 'G:\marvel-api\CreateCharacters.robot' on line 4: Importing library 'RequestsLibrary' failed: ModuleNotFoundError: No module named 'RequestsLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\Scripts\robot.exe
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\Lib\site-packages</msg>
+<msg timestamp="20230211 17:15:52.538" level="ERROR">Error in file 'G:\marvel-api\CreateCharacters.robot' on line 5: Importing library 'G:\marvel-api\factories\Thanos.py' failed: ModuleNotFoundError: No module named 'faker'
+Traceback (most recent call last):
+  File "G:\marvel-api\factories\Thanos.py", line 1, in &lt;module&gt;
+    from faker import Faker
+PYTHONPATH:
+  G:\marvel-api\factories
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\Scripts\robot.exe
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311
+  C:\Users\jonatas\AppData\Local\Programs\Python\Python311\Lib\site-packages</msg>
+</errors>
+</robot>
